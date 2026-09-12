@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Haven - Ultimate Gaming Experience</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #06b6d4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(15, 23, 42, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .lang-btn {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--text-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background-color: var(--primary);
+            color: #fff;
+        }
+
+        .hero {
+            padding: 4rem 2rem 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.15) 0%, rgba(15, 23, 42, 1) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #a78bfa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p.tagline {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* Search Section */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            border: 2px solid #334155;
+            background-color: #1e293b;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem 0;
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.25);
+        }
+
+        .cover-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background-color: #0b0f19;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-direction: column;
+        }
+
+        .btn {
+            display: block;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: #0f172a;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #fff;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            line-height: 1;
+        }
+
+        html[dir="rtl"] .close-modal {
+            right: auto;
+            left: 15px;
+        }
+
+        .testimonials {
+            background-color: #111827;
+            padding: 4rem 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        html[dir="rtl"] .testimonial-card {
+            border-left: none;
+            border-right: 4px solid var(--primary);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-card .author {
+            font-weight: bold;
+            color: var(--accent);
+            text-align: right;
+        }
+
+        html[dir="rtl"] .testimonial-card .author {
+            text-align: left;
+        }
+
+        footer {
+            background-color: #0b0f19;
+            padding: 3rem 1.5rem;
+            border-top: 1px solid #334155;
+            text-align: center;
+        }
+
+        footer h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo" data-en="Game Haven" data-ar="جيم هافن">Game Haven</div>
+        <nav>
+            <a href="#featured" data-en="Featured" data-ar="الأبرز">Featured</a>
+            <a href="#open-world" data-en="Open World" data-ar="عالم مفتوح">Open World</a>
+            <a href="#reviews" data-en="Reviews" data-ar="الآراء">Reviews</a>
+            <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+            <button class="lang-btn" id="langToggle">العربية (EGP)</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 data-en="Discover the Ultimate Gaming Experience" data-ar="اكتشف التجربة الفائقة للألعاب">Discover the Ultimate Gaming Experience</h1>
+        <p class="tagline" data-en="Explore PC, Xbox, PlayStation, and retro games today. Search titles, watch trailers, and find your next favorite game." data-ar="استكشف أحدث ألعاب PC و Xbox و PlayStation. ابحث عن الألعاب، شاهد الإعلانات، واعثر على لعبتك المفضلة التالية.">Explore PC, Xbox, PlayStation, and retro games today. Search titles, watch trailers, and find your next favorite game.</p>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search games by title..." data-placeholder-en="Search games by title..." data-placeholder-ar="ابحث عن ألعاب بالعنوان...">
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title" id="featured" data-en="Top Titles Now" data-ar="أحدث وأشهر الألعاب">Top Titles Now</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX5ity8n6V9X_GDfP7E7Q5J3vSIiZpqWo_NLOpLoM_pg&s=10" alt="Mortal Kombat 1" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Mortal Kombat 1" data-ar="مورتال كومبات 1">Mortal Kombat 1</h3>
+                        <p data-en="Experience thrilling battles with intense combat and iconic characters." data-ar="عش خوض المعارك القتالية الملحمية مع قتال ممتع وشخصيات أسطورية.">Experience thrilling battles with intense combat and iconic characters.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$59.99" data-egp="2,999 ج.م">$59.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="MYbJ2208A4E" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>a
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a6/EA_Sports_FC_24_cover_art.jpg" alt="EA Sports FC 24" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="EA Sports FC 24" data-ar="إي أيه سبورتس FC 24">EA Sports FC 27</h3>
+                        <p data-en="Play the world's game with realistic gameplay and top teams." data-ar="العب لعبة كرة القدم الأكثر واقعية عالميًا مع أحدث الفرق واللاعبين.">Play the world's game with realistic gameplay and top teams.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$49.99" data-egp="2,499 ج.م">$49.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="XhP3Xh4LMA8" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f6/NBA_2K24_cover_art.jpg" alt="NBA 2K24" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="NBA 2K24" data-ar="إن بي إيه 2K24">NBA 2K24</h3>
+                        <p data-en="Step onto the court and experience top-tier basketball action." data-ar="انزل إلى الملعب وعش أفضل تجربة ألعاب كرة السلة الاحترافية.">Step onto the court and experience top-tier basketball action.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$59.99" data-egp="2,999 ج.م">$59.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="O3_S4_Bv1x8" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/0f/Spider-Man_2_PS5_cover_art.jpg" alt="Spider-Man 2" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Spider-Man 2" data-ar="سبايدرمان 2">Spider-Man 2</h3>
+                        <p data-en="Swing through Marvel's New York with Peter Parker and Miles Morales." data-ar="تأرجح عبر نيويورك مع بيتر باركر ومايلز موراليس في مغامرة أسطورية.">Swing through Marvel's New York with Peter Parker and Miles Morales.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$69.99" data-egp="3,499 ج.م">$69.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="bgqGdI603EU" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Tekken_8_cover_art.jpg" alt="Tekken 8" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Tekken 8" data-ar="تيكن 8">Tekken 8</h3>
+                        <p data-en="Fist meets fate in the legendary 3D fighting game franchise." data-ar="المواجهات الحتْمية والمواجهات الملحمية في لعبة القتال الأسطورية.">Fist meets fate in the legendary 3D fighting game franchise.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$69.99" data-egp="3,499 ج.م">$69.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="_2p69S2O_dM" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/e/ee/God_of_War_Ragnar%C3%B6k_cover.jpg" alt="God of War Ragnarök" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="God of War Ragnarök" data-ar="جود أوف وور رانغاروك">God of War Ragnarök</h3>
+                        <p data-en="Embark on a mythic journey for answers before Ragnarök arrives." data-ar="انطلق في رحلة ملحمية بحثًا عن الإجابات قبل حدوث كارثة راغناروك.">Embark on a mythic journey for answers before Ragnarök arrives.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$59.99" data-egp="2,999 ج.م">$59.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="hfJ4Km46A-0" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="open-world" data-en="Open World Adventures" data-ar="مغامرات العالم المفتوح">Open World Adventures</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V_Cover_art.jpg" alt="Grand Theft Auto V" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Grand Theft Auto V" data-ar="جراند ثيفت أوتو V">Grand Theft Auto V</h3>
+                        <p data-en="Experience the thrill of exploring a vast, dynamic open world." data-ar="استكشف عالمًا مفتوحًا ديناميكيًا وضخمًا مع خيارات أونلاين لا حصر لها.">Experience the thrill of exploring a vast, dynamic open world.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$29.99" data-egp="1,499 ج.م">$29.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="QkkoHAzjinY" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg" alt="Red Dead Redemption II" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Red Dead Redemption II" data-ar="ريد ديد ريدمبشن 2">Red Dead Redemption II</h3>
+                        <p data-en="Immerse yourself in a breathtaking open world with rich storytelling." data-ar="عش حياة الغرب الأمريكي القديم مع قصة ملحمية ورسومات مذهلة.">Immerse yourself in a breathtaking open world with rich storytelling.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$59.99" data-egp="2,999 ج.م">$59.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="eaW0tIOpod4" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg" alt="Elden Ring" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Elden Ring" data-ar="إلدن رينج">Elden Ring</h3>
+                        <p data-en="Journey through the Lands Between and uncover mysterious powers." data-ar="استكشف الأراضي بين العالم المفتوح واستمتع بتحديات قتال أسطورية.">Journey through the Lands Between and uncover mysterious powers.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$49.99" data-egp="2,499 ج.م">$49.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="AKXiKBnzpBQ" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.doc.pNG" alt="The Witcher 3" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="The Witcher 3: Wild Hunt" data-ar="ذا ويتشر 3: وايلد هانت">The Witcher 3: Wild Hunt</h3>
+                        <p data-en="Become a monster slayer for hire on an epic quest in a dark fantasy world." data-ar="انطلق في رحلة ملحمية في عالم مليء بالوحوش والسحر والقرارات الصعبة.">Become a monster slayer for hire on an epic quest in a dark fantasy world.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$24.99" data-egp="1,249 ج.م">$24.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="XHrskk42KZU" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/7/77/Cyberpunk_2077_case_art.jpg" alt="Cyberpunk 2077" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Cyberpunk 2077" data-ar="سايبربانك 2077">Cyberpunk 2077</h3>
+                        <p data-en="Explore Night City, a megalopolis obsessed with power and body modification." data-ar="انغمس في مدينة نايت سيتي المستقبلية المليئة بالتكنولوجيا والمغامرات.">Explore Night City, a megalopolis obsessed with power and body modification.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$39.99" data-egp="1,999 ج.م">$39.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="UnA7TEJhB7s" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/a/a7/Hogwarts_Legacy_cover_art.gif" alt="Hogwarts Legacy" class="cover-img">
+                <div class="card-content">
+                    <div>
+                        <h3 data-en="Hogwarts Legacy" data-ar="هوجوورتس ليجاسي">Hogwarts Legacy</h3>
+                        <p data-en="Experience Hogwarts in the 1800s. Your character holds the key to an ancient secret." data-ar="عش تجربة هوجوورتس في القرن التاسع عشر واكتشف الأسرار السحرية.">Experience Hogwarts in the 1800s. Your character holds the key to an ancient secret.</p>
+                    </div>
+                    <div>
+                        <div class="price" data-usd="$59.99" data-egp="2,999 ج.م">$59.99</div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary watch-trailer-btn" data-video="BtyBjOW8sGY" data-en="Watch Trailer 🎬" data-ar="شاهد الإعلان 🎬">Watch Trailer 🎬</button>
+                            <a href="#contact" class="btn" data-en="Buy Now" data-ar="اشترِ الآن">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="testimonials" id="reviews">
+            <h2 class="section-title" style="margin-top:0;" data-en="What Our Gamers Say" data-ar="ماذا يقول لاعبونا">What Our Gamers Say</h2>
+            <div class="grid">
+                <div class="testimonial-card">
+                    <p data-en="“Game Haven has an amazing selection of games! I always find the latest titles at great prices.”" data-ar="“تشكيلة ممتازة من الألعاب وخدمة الشحن كانت سريعة جدًا داخل القاهرة!”">“Game Haven has an amazing selection of games! I always find the latest titles at great prices.”</p>
+                    <div class="author" data-en="— Emily, Teacher" data-ar="— أمل، مدرسة">— Emily, Teacher</div>
+                </div>
+                <div class="testimonial-card">
+                    <p data-en="“The staff is very knowledgeable and helped me find the perfect game for my collection.”" data-ar="“فريق العمل ساعدني في اختيار أفضل الألعاب التي تناسب ذوقي، والأسعار مناسبة جدًا.”">“The staff is very knowledgeable and helped me find the perfect game for my collection.”</p>
+                    <div class="author" data-en="— Marcus, Engineer" data-ar="— ماركوس، مهندس">— Marcus, Engineer</div>
+                </div>
+                <div class="testimonial-card">
+                    <p data-en="“I love coming here! The atmosphere is friendly, and I can always discover something new to play.”" data-ar="“متجري المفضّل لشراء ألعاب البلايستيشن والـ PC، العروض متجددة دائمًا.”">“I love coming here! The atmosphere is friendly, and I can always discover something new to play.”</p>
+                    <div class="author" data-en="— Nikita, Manager" data-ar="— كريم، مدير مبيعات">— Nikita, Manager</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer id="contact">
+        <h3 data-en="Get in Touch" data-ar="تواصل معنا">Get in Touch</h3>
+        <div class="contact-info">
+            <p><strong data-en="Phone:" data-ar="الهاتف:">Phone:</strong> +20 (12) 3456-7890</p>
+            <p><strong data-en="Social:" data-ar="وسائل التواصل:">Social:</strong> @gamehaven_eg</p>
+            <p><strong data-en="Email:" data-ar="البريد الإلكتروني:">Email:</strong> support@gamehaven.eg</p>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted);" data-en="© Game Haven. All rights reserved." data-ar="© جيم هافن. جميع الحقوق محفوظة.">&copy; Game Haven. All rights reserved.</p>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="video-container">
+                <iframe id="youtubeIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language Toggle Script
+        const langToggleBtn = document.getElementById('langToggle');
+        const searchInput = document.getElementById('searchInput');
+        let currentLang = 'en';
+
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            // Placeholder localization
+            searchInput.placeholder = searchInput.getAttribute(`data-placeholder-${currentLang}`);
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const targetText = el.getAttribute(`data-${currentLang}`);
+                if (el.children.length === 0) {
+                    el.textContent = targetText;
+                } else {
+                    for (let node of el.childNodes) {
+                        if (node.nodeType === Node.TEXT_NODE && node.nodeValue.trim() !== '') {
+                            node.nodeValue = targetText;
+                            break;
+                        }
+                    }
+                }
+            });
+
+            document.querySelectorAll('.price').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang === 'ar' ? 'egp' : 'usd'}`);
+            });
+
+            langToggleBtn.textContent = currentLang === 'en' ? 'العربية (EGP)' : 'English (USD)';
+        });
+
+        // Search Filter Script
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Trailer Video Modal Script
+        const videoModal = document.getElementById('videoModal');
+        const youtubeIframe = document.getElementById('youtubeIframe');
+        const closeModal = document.getElementById('closeModal');
+
+        document.querySelectorAll('.watch-trailer-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const videoId = btn.getAttribute('data-video');
+                youtubeIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                videoModal.style.display = 'flex';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            youtubeIframe.src = '';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                videoModal.style.display = 'none';
+                youtubeIframe.src = '';
+            }
+        });
+    </script>
+</body>
+</html>
